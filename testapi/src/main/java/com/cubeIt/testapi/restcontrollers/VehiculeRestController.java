@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cubeIt.testapi.dto.VehiculeDTOProj;
 import com.cubeIt.testapi.models.Vehicule;
 import com.cubeIt.testapi.repositories.VehiculeRepository;
 import com.cubeIt.testapi.services.interfaces.IVehiculeService;
@@ -104,13 +105,22 @@ public class VehiculeRestController {
 		
 		return vehicules;
 	}
-	
 //	API FINDALL Vehicules by name
-	@GetMapping("/all/bymodele/{modele}")
+	@GetMapping("/all/byname/{modele}")
 	@ResponseBody
 	public List<Vehicule> getVehiculesByModele(@PathVariable("modele")String modele){
 		
-		List<Vehicule> vehicules=vehiculeRepository.findByModele(modele);
+		List<Vehicule> vehicules=vehiculeService.retrieveAllVehiculesByName(modele);
+		
+		return vehicules;
+	}
+	
+//	API FINDALL Vehicules with specific Attributes
+	@GetMapping("/all/mobile")
+	@ResponseBody
+	public List<VehiculeDTOProj> getVehiculesSpecificFields(){
+		
+		List<VehiculeDTOProj> vehicules=vehiculeRepository.findAllSpecificFields();
 		
 		return vehicules;
 	}

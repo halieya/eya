@@ -1,8 +1,10 @@
 package com.cubeIt.testapi.models;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,7 +27,13 @@ public class Vehicule {
     
     private String nbrportes;
     private String prix;
-
+ //  one to many 
+    @DBRef
+    private List<Chauffeur> Chauffeurs;
+    // one to one 
+    @DBRef
+    private TestMission test;
+     
     public Vehicule( String marque, String modele, Date datefab, String nbrportes, String prix) {
 		super();
 		

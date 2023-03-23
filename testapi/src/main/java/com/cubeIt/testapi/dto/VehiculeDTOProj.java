@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 public interface VehiculeDTOProj {
 
 	
-	@Value("#{targetid}")
+	@Value("#{target.id}")
 	String getId();
 	String getMarque();
 	String getModele();
